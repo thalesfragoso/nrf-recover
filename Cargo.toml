@@ -1,0 +1,22 @@
+[package]
+name = "nrf-recover"
+version = "0.1.0"
+authors = ["Thales Fragoso <thales.fragosoz@gmail.com>"]
+edition = "2018"
+description = "Unlock nRF52 devices using a CMSIS-DAP or JLink probe"
+
+repository = "https://github.com/thalesfragoso/nrf-recover"
+documentation = "https://docs.rs/nrf-recover"
+readme = "README.md"
+
+categories = ["embedded"]
+keywords = ["arm", "cortex-m", "nrf"]
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+structopt = "0.3.14"
+pretty_env_logger = "0.4.0"
+log = "0.4.8"
+colored = "1.9.3"
+probe-rs = { path = "../probe-rs/probe-rs" }
+anyhow = "1.0.31"
