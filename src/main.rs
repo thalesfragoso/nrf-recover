@@ -83,6 +83,7 @@ fn main_try() -> Result<()> {
 
     let mut probe = Probe::from_probe_info(&device)?;
     probe.select_protocol(WireProtocol::Swd)?;
+    probe.attach_to_unspecified()?;
     let mut interface_state = ArmCommunicationInterfaceState::new();
     let mut interface = ArmCommunicationInterface::new(&mut probe, &mut interface_state)?
         .ok_or_else(|| anyhow!("Failed to create arm communication interface"))?;
