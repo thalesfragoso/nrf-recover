@@ -1,4 +1,4 @@
-# nrf-unlock
+# nrf-recover
 
 Unlocks nRF52 devices using a CMSIS-DAP or JLink probe.
 
@@ -7,7 +7,7 @@ Unlocks nRF52 devices using a CMSIS-DAP or JLink probe.
 Using cargo:
 
 ```console
-$ cargo install nrf-unlock
+$ cargo install nrf-recover
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ This utility uses [probe-rs](https://crates.io/crates/probe-rs) to interface wit
 Connect your microcontroller to the debug probe and run:
 
 ```console
-$ nrf-unlock
+$ nrf-recover
 ```
 
 **Attention**: This process will erase the entire code flash and UICR area of the device, in addition to the entire RAM.
