@@ -20,6 +20,8 @@ Connect your microcontroller to the debug probe and run:
 $ nrf-recover
 ```
 
+This process has a timeout of 15 seconds, but it usually completes in less than one second. If you get a timeout, you should reset the microcontroller and try again. Please open an issue if you can not unlock the chip after several tries.
+
 **Attention**: This process will erase the entire code flash and UICR area of the device, in addition to the entire RAM.
 
 ## License
