@@ -81,7 +81,7 @@ fn main_try() -> Result<()> {
         return Err(anyhow!("It isn't possible to recover with a ST-Link"));
     }
 
-    let mut probe = Probe::from_probe_info(&device)?;
+    let mut probe = Probe::open(device)?;
     probe.select_protocol(WireProtocol::Swd)?;
     probe.attach_to_unspecified()?;
     let mut interface_state = ArmCommunicationInterfaceState::new();

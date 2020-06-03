@@ -9,7 +9,7 @@ repository = "https://github.com/thalesfragoso/nrf-recover"
 documentation = "https://docs.rs/nrf-recover"
 readme = "README.md"
 
-categories = ["embedded"]
+categories = ["embedded", "development-tools"]
 keywords = ["arm", "cortex-m", "nrf"]
 license = "MIT OR Apache-2.0"
 
@@ -18,5 +18,5 @@ structopt = "0.3.14"
 pretty_env_logger = "0.4.0"
 log = "0.4.8"
 colored = "1.9.3"
-probe-rs = { git = "https://github.com/probe-rs/probe-rs", rev = "f28ed0007e67f90f306d3cce01715c398c7c5b92" }
+probe-rs = "0.7.1"
 anyhow = "1.0.31"
