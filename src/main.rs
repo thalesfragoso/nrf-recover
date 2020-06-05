@@ -2,10 +2,7 @@ use anyhow::{anyhow, Result};
 use colored::*;
 use probe_rs::{
     architecture::arm::{
-        ap::{
-            custom_ap::{CtrlAP, ERASEALL, ERASEALLSTATUS, RESET},
-            get_ap_by_idr, APAccess, APClass, APType, IDR,
-        },
+        ap::{get_ap_by_idr, APClass, APType, IDR},
         ArmCommunicationInterface, ArmCommunicationInterfaceState,
     },
     DebugProbeType, Probe, WireProtocol,
@@ -16,6 +13,9 @@ use std::{
     time::Instant,
 };
 use structopt::StructOpt;
+
+mod custom_ap;
+use custom_ap::{CtrlAP, ERASEALL, ERASEALLSTATUS, RESET};
 
 #[derive(Debug, StructOpt)]
 struct Opt {
@@ -81,7 +81,7 @@ fn main_try() -> Result<()> {
         return Err(anyhow!("It isn't possible to recover with a ST-Link"));
     }
 
-    let mut probe = Probe::from_probe_info(&device)?;
+    let mut probe = Probe::open(device)?;
     probe.select_protocol(WireProtocol::Swd)?;
     probe.attach_to_unspecified()?;
     let mut interface_state = ArmCommunicationInterfaceState::new();
@@ -143,7 +143,7 @@ fn nrf_recover(probe: &mut ArmCommunicationInterface) -> Result<()> {
     probe.write_ap_register(ctrl_port, erase_reg)?;
     if timeout {
         Err(anyhow!(
-            "    {} Mass erase process timeout, the chip might still be locked.",
+            "    {} Mass erase process timed out, the chip might still be locked.",
             "Error".red().bold()
         ))
     } else {
