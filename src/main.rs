@@ -24,6 +24,9 @@ struct Opt {
     skip_confirmation: bool,
     #[structopt(name = "Debug probe index", long = "probe-index")]
     probe_index: Option<usize>,
+    /// Uses st-link for mass erase, it will not work if the chip is indeed locked
+    #[structopt(long = "st-link", short = "s")]
+    st_link: bool,
 }
 
 fn main() {
@@ -49,7 +52,7 @@ fn main_try() -> Result<()> {
             "This process will erase the entire code flash and UICR area of the device, \
         \nin addition to the entire RAM. (You can skip this message with the -y flag)"
         );
-        print!("Do you want to continue [Y/n]: ");
+        print!("Do you want to continue [y/N]: ");
         stdout().flush()?;
         stdin().read_line(&mut input_buffer)?;
         match input_buffer.to_lowercase().chars().next() {
@@ -77,7 +80,7 @@ fn main_try() -> Result<()> {
         }
     };
 
-    if device.probe_type == DebugProbeType::STLink {
+    if device.probe_type == DebugProbeType::STLink && !opt.st_link {
         return Err(anyhow!("It isn't possible to recover with a ST-Link"));
     }
 

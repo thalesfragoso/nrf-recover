@@ -24,6 +24,8 @@ This process has a timeout of 15 seconds, but it usually completes in less than 
 
 **Attention**: This process will erase the entire code flash and UICR area of the device, in addition to the entire RAM.
 
+There is a flag to enable mass erase with a st-link, this is useful in case your chip is in a bad state and you only have a st-link, but it will **not** work if your chip is indeed locked.
+
 ## License
 
 Licensed under either of
